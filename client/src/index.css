@@ -1,0 +1,223 @@
+body {
+  margin: 0;
+  font-family: 'Scope One', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  background-size: cover;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.navbar {
+  background: linear-gradient(90deg, rgb(27, 34, 58) 0%, rgb(27, 34, 58) 100%);
+  height: 6rem;
+  transition: padding-top 0.5s ease-in-out 0s, background-color 0.2s ease 0s, height 0.5s ease-in-out 0s;
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: stretch;
+  align-items: stretch;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 60vw;
+  justify-content: end;
+  margin-right: 2rem;
+}
+
+.nav-links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+}
+
+.nav-links:hover {
+  border-bottom: 4px solid #fff;
+  transition: all 0.2s ease-out;
+}
+
+.welcome-content {
+  font-size: 1.2rem;
+  color: rgb(58, 214, 204);
+  font-weight: 900;
+  text-align: "center";
+  margin: auto;
+  height: 696px;
+  background: linear-gradient(180deg, rgb(27, 34, 58) 0%, #263052 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-button {
+  /* background: linear-gradient(202deg, rgb(108, 237, 232) 0%, rgb(70, 93, 186) 100%); */
+  background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  width: 240px;
+}
+
+.business-button {
+  /* background: linear-gradient(202deg, #FFFFFF 0%, #e3f2fd 100%); */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  /* width: 240px; */
+}
+
+.save-button {
+  /* background: linear-gradient(202deg, #e3f2fd 0%, #e3f2fd 100%); */
+  background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  width: 100%;
+}
+
+.button-text {
+  color: black;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: bolder;
+}
+
+.overview {
+  padding-top: 390px;
+  background-color: #e3f2fd;
+  padding-bottom: 60px;
+}
+
+.what-we-do {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #F2F8FD;
+}
+
+.blog-posts {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #e3f2fd;
+}
+
+.footer {
+  background: linear-gradient(90deg, rgb(27, 34, 58) 0%, rgb(27, 34, 58) 100%);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.container {
+  padding: 60px;
+  padding-top: 6rem;
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  /* background-image: url(Images/bubbles.jpg);
+  background-size: cover; */
+  height: 100%;
+}
+
+.inside-container {
+  flex-grow: 1;
+  border-radius: 4px;
+  /* background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+}
+
+.blurred {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.Mui-selected {
+  color: #DC003E;
+}
+
+.MuiBottomNavigationAction-label {
+  font-weight: bold;
+}
+
+.canvas-container {
+  height: 100vh;
+}
+
+/* React Router Modal */
+
+/* added to the body element when shown; prevent scrolling */
+
+.react-router-modal__modal-open {
+  overflow: hidden;
+}
+
+/* container that contains all modals and backdrops */
+
+.react-router-modal__container {
+  position: fixed;
+  z-index: 1000
+}
+
+/* wrapper that contains backdrop and modal */
+
+/* setting this to absolute and setting a z-index creates a new stacking context */
+
+.react-router-modal__wrapper {
+  position: absolute;
+  z-index: 1;
+}
+
+/* backdrop shown behind each modal */
+
+.react-router-modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* modal element for the modal component */
+
+.react-router-modal__modal {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  border-radius: 5px;
+  height: 80vh;
+  width: 60vw;
+  border: 2px solid #000;
+  overflow-y: scroll;
+}
+
+/* mobile devices, particularly iOS, have some quirks to work around */
+
+@media only screen and (max-device-width: 1024px) {
+  .react-router-modal__modal-open {
+    position: fixed;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .react-router-modal__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0, 0, 0)
+  }
+}
