@@ -118,8 +118,6 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
 
   const classes = useStyles();
 
-  console.log("latestBlogs: ", latestBlogs);
-
   return (
     <div>
       <Particles
