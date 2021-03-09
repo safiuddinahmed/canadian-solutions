@@ -31,8 +31,6 @@ const Login = ({ loginUser, userInfo }) => {
     error = true;
   }
 
-  console.log("error: ", error);
-
   return (
     <div className="container">
       <div
@@ -102,7 +100,13 @@ const Login = ({ loginUser, userInfo }) => {
                       effortlessly.
                     </Typography>
                   </Grid>
-                  <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+                  <Grid
+                    item
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    style={{ textAlign: "left" }}
+                  >
                     <Typography
                       variant="subtitle1"
                       style={{ fontWeight: "900" }}
@@ -123,7 +127,13 @@ const Login = ({ loginUser, userInfo }) => {
                     />
                   </Grid>
 
-                  <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+                  <Grid
+                    item
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    style={{ textAlign: "left" }}
+                  >
                     <Typography
                       variant="subtitle1"
                       style={{ fontWeight: "900" }}
@@ -151,9 +161,9 @@ const Login = ({ loginUser, userInfo }) => {
                     </Typography>
                   </Grid>
 
-                  <Grid item md={6}></Grid>
+                  <Grid item md={6} xs={12}></Grid>
 
-                  <Grid item md={6} sm={6}>
+                  <Grid item md={6} sm={6} xs={12}>
                     <Button
                       variant="text"
                       onClick={loginClick}

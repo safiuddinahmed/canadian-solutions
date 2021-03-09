@@ -22,7 +22,7 @@ const Footer = () => {
       title: "profile",
     },
     {
-      title: "FAQ",
+      title: "FAQs",
     },
   ]);
   return (

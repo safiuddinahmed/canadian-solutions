@@ -78,7 +78,7 @@ const CurrentPost = ({
     <div className={classes.paper}>
       <Card
         style={{
-          padding: "30px",
+          padding: "5%",
           backgroundColor: "transparent",
           // backgroundColor: "rgb(0,0,0)",
           // backgroundColor: "rgba(0,0,0, 0.06)",
@@ -93,7 +93,7 @@ const CurrentPost = ({
           alignItems="center"
           spacing={2}
         >
-          <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+          <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
             <Card className={classes.card}>
               <Typography variant="h5" style={{ fontWeight: "900" }}>
                 {currentPost.title}
@@ -127,7 +127,7 @@ const CurrentPost = ({
             </Card>
           </Grid>
           {comments.map((item) => (
-            <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+            <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
               <Card className={classes.card}>
                 <div
                   style={{

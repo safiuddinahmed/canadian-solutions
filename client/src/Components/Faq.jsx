@@ -57,7 +57,8 @@ const Faq = ({ updateAppbar }) => {
     },
     {
       question: "What devices can I use this web app on?",
-      answer: "This web app can be used on any device that supports a browser.",
+      answer:
+        "This web app can be used on any device that supports a browser. A phone in landscape mode or a device larger than that would be ideal.",
     },
   ];
   return (
@@ -106,7 +107,7 @@ const Faq = ({ updateAppbar }) => {
             >
               <Card
                 style={{
-                  padding: "30px",
+                  padding: "5%",
                   backgroundColor: "transparent",
                   color: "black",
                   boxShadow: "none",
@@ -123,8 +124,10 @@ const Faq = ({ updateAppbar }) => {
                         {item.question}
                       </Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>{item.answer}</Typography>
+                    <AccordionDetails style={{ padding: "3%" }}>
+                      <Typography paragraph="true" align="justify">
+                        {item.answer}
+                      </Typography>
                     </AccordionDetails>
                   </Accordion>
                 ))}
