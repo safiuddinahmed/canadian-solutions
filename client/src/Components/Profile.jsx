@@ -118,7 +118,7 @@ const Profile = ({
       alignItems="center"
       spacing={2}
     >
-      <Grid item md={6} sm={6} style={{ textAlign: "left" }}>
+      <Grid item md={6} sm={6} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Name
         </Typography>
@@ -133,7 +133,7 @@ const Profile = ({
           margin="dense"
         />
       </Grid>
-      <Grid item md={6} sm={6} style={{ textAlign: "left" }}>
+      <Grid item md={6} sm={6} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Business Name
         </Typography>
@@ -153,7 +153,7 @@ const Profile = ({
           }
         />
       </Grid>
-      <Grid item md={6} sm={6} style={{ textAlign: "left" }}>
+      <Grid item md={6} sm={6} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Email
         </Typography>
@@ -168,7 +168,7 @@ const Profile = ({
         />
       </Grid>
 
-      <Grid item md={6} sm={6} style={{ textAlign: "left" }}>
+      <Grid item md={6} sm={6} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Industry
         </Typography>
@@ -203,7 +203,7 @@ const Profile = ({
           </Select>
         </FormControl>
       </Grid>
-      <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+      <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Description
         </Typography>
@@ -224,7 +224,7 @@ const Profile = ({
           }
         />
       </Grid>
-      <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+      <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Product Details
         </Typography>
@@ -245,7 +245,7 @@ const Profile = ({
           }
         />
       </Grid>
-      <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+      <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Address
         </Typography>
@@ -263,7 +263,7 @@ const Profile = ({
           }
         />
       </Grid>
-      <Grid item md={6} sm={6} style={{ textAlign: "left" }}>
+      <Grid item md={6} sm={6} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Website Link
         </Typography>
@@ -277,7 +277,7 @@ const Profile = ({
           onChange={(e) => setBusiness({ ...business, url: e.target.value })}
         />
       </Grid>
-      <Grid item md={6} sm={6} style={{ textAlign: "left" }}>
+      <Grid item md={6} sm={6} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="subtitle1" style={{ fontWeight: "900" }}>
           Phone
         </Typography>
@@ -292,7 +292,7 @@ const Profile = ({
           onChange={(e) => setBusiness({ ...business, phone: e.target.value })}
         />
       </Grid>
-      <Grid item md={12} sm={12} style={{ textAlign: "left" }}>
+      <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="body2" style={{ fontWeight: "bold" }}>
           No need to add http in the website link field. Please contact our
           support if you encounter any issues or need help.
@@ -415,7 +415,7 @@ const Profile = ({
             color: "black",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "30px" }}>
+          <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
             <br></br>
             <Typography
               variant="h4"
@@ -427,7 +427,7 @@ const Profile = ({
               We will use this information to display your business' details.
             </Typography>
           </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "30px" }}>
+          <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
             <BackdropFilter
               className="blurred"
               filter={"blur(10px)"}
@@ -440,7 +440,7 @@ const Profile = ({
             >
               <Card
                 style={{
-                  padding: "30px",
+                  padding: "5%",
                   backgroundColor: "transparent",
                   // backgroundColor: "rgb(0,0,0)",
                   // backgroundColor: "rgba(0,0,0, 0.06)",
@@ -475,7 +475,7 @@ const Profile = ({
             color: "black",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "30px" }}>
+          <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
             <br></br>
             <Typography
               variant="h4"
@@ -489,7 +489,7 @@ const Profile = ({
               new ones.
             </Typography>
           </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "30px" }}>
+          <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
             {content}
           </Grid>
         </Grid>
@@ -523,7 +523,7 @@ const Profile = ({
             color: "black",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "30px" }}>
+          <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
             <br></br>
             <Typography
               variant="h4"
@@ -536,7 +536,7 @@ const Profile = ({
               past week.
             </Typography>
           </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "30px" }}>
+          <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
             <Chart />
           </Grid>
         </Grid>
