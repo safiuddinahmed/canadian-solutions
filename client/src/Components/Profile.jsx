@@ -13,7 +13,10 @@ import {
   Button,
   CardActionArea,
   CardContent,
+  Snackbar,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import Slide from "@material-ui/core/Slide";
 import BackdropFilter from "react-backdrop-filter";
 import moment from "moment";
 
@@ -69,8 +72,19 @@ const Profile = ({
     // eslint-disable-next-line
   }, [currentBusiness]);
 
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const updateClick = () => {
     updateBusiness(business);
+    setOpen(true);
   };
 
   const [blur, setBlur] = useState(null);
@@ -542,6 +556,21 @@ const Profile = ({
           </Grid>
         </Grid>
       </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        TransitionComponent={Slide}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          elevation={6}
+          variant="filled"
+        >
+          Your profile was updated!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

@@ -79,10 +79,6 @@ export const updateBusiness = (business) => async (dispatch) => {
 
   const data = await res.json();
 
-  if (res.status === 200) {
-    alert("Your business details have been updated!");
-  }
-
   dispatch({
     type: UPDATE_BUSINESS,
     payload: data,

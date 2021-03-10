@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Card, TextField, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Card,
+  TextField,
+  Button,
+  Snackbar,
+} from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import Slide from "@material-ui/core/Slide";
 // import { Modal } from "react-router-modal";
 // import { useHistory } from "react-router-dom";
 import moment from "moment";
@@ -65,8 +74,19 @@ const CurrentPost = ({
   //   history.push("/forums");
   // };
 
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const commentClick = () => {
     postComment(postID, comment);
+    setOpen(true);
   };
 
   const [comment, setComment] = useState({
@@ -75,114 +95,132 @@ const CurrentPost = ({
 
   return (
     // <Modal onBackdropClick={handleClick}>
-    <div className={classes.paper}>
-      <Card
-        style={{
-          padding: "5%",
-          backgroundColor: "transparent",
-          // backgroundColor: "rgb(0,0,0)",
-          // backgroundColor: "rgba(0,0,0, 0.06)",
-          color: "black",
-          boxShadow: "none",
-        }}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          spacing={2}
+    <div>
+      <div className={classes.paper}>
+        <Card
+          style={{
+            padding: "5%",
+            backgroundColor: "transparent",
+            // backgroundColor: "rgb(0,0,0)",
+            // backgroundColor: "rgba(0,0,0, 0.06)",
+            color: "black",
+            boxShadow: "none",
+          }}
         >
-          <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
-            <Card className={classes.card}>
-              <Typography variant="h5" style={{ fontWeight: "900" }}>
-                {currentPost.title}
-              </Typography>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "20px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  // align="right"
-                  color="textSecondary"
-                >
-                  {currentPost.name}
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="textSecondary"
-                  // align="right"
-                >
-                  {moment(currentPost.date).format("LLL")}
-                </Typography>
-              </div>
-              <Typography component="h6" variant="h6" paragraph="true">
-                {currentPost.description}
-              </Typography>
-            </Card>
-          </Grid>
-          {comments.map((item) => (
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={2}
+          >
             <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
               <Card className={classes.card}>
+                <Typography variant="h5" style={{ fontWeight: "900" }}>
+                  {currentPost.title}
+                </Typography>
                 <div
                   style={{
-                    margin: "auto",
-                    alignItems: "center",
-                    justifyContent: "left",
-                    // display: "flex",
-                    width: "100%",
-                    minHeight: "60px",
-                    // gap: "10px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "20px",
+                    paddingBottom: "10px",
                   }}
                 >
                   <Typography
                     variant="subtitle1"
+                    // align="right"
                     color="textSecondary"
-                    style={{ fontWeight: "900" }}
                   >
-                    {item.name} replied on {moment(item.date).format("LLL")}:
+                    {currentPost.name}
                   </Typography>
-                  <Typography variant="h6" align="justify">
-                    {item.description}
+                  <Typography
+                    variant="subtitle1"
+                    color="textSecondary"
+                    // align="right"
+                  >
+                    {moment(currentPost.date).format("LLL")}
                   </Typography>
                 </div>
+                <Typography component="h6" variant="h6" paragraph="true">
+                  {currentPost.description}
+                </Typography>
               </Card>
             </Grid>
-          ))}
-          <Grid item md={8} sm={12} xs={12} style={{ textAlign: "left" }}>
-            <TextField
-              label="Post your comment"
-              variant="filled"
-              fullWidth
-              multiline
-              margin="dense"
-              defaultValue={comment.description}
-              onChange={(e) =>
-                setComment({ ...comment, description: e.target.value })
-              }
-            />
+            {comments.map((item) => (
+              <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
+                <Card className={classes.card}>
+                  <div
+                    style={{
+                      margin: "auto",
+                      alignItems: "center",
+                      justifyContent: "left",
+                      // display: "flex",
+                      width: "100%",
+                      minHeight: "60px",
+                      // gap: "10px",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      color="textSecondary"
+                      style={{ fontWeight: "900" }}
+                    >
+                      {item.name} replied on {moment(item.date).format("LLL")}:
+                    </Typography>
+                    <Typography variant="h6" align="justify">
+                      {item.description}
+                    </Typography>
+                  </div>
+                </Card>
+              </Grid>
+            ))}
+            <Grid item md={8} sm={12} xs={12} style={{ textAlign: "left" }}>
+              <TextField
+                label="Post your comment"
+                variant="filled"
+                fullWidth
+                multiline
+                margin="dense"
+                defaultValue={comment.description}
+                onChange={(e) =>
+                  setComment({ ...comment, description: e.target.value })
+                }
+              />
+            </Grid>
+            <Grid item md={4} sm={12} xs={12} style={{ height: "100%" }}>
+              <Button
+                variant="text"
+                onClick={commentClick}
+                style={{
+                  backgroundColor: "rgba(0,0,0, 0.05)",
+                  width: "100%",
+                  color: "black",
+                }}
+              >
+                Comment
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item md={4} sm={12} xs={12} style={{ height: "100%" }}>
-            <Button
-              variant="text"
-              onClick={commentClick}
-              style={{
-                backgroundColor: "rgba(0,0,0, 0.05)",
-                width: "100%",
-                color: "black",
-              }}
-            >
-              Comment
-            </Button>
-          </Grid>
-        </Grid>
-      </Card>
+        </Card>
+      </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        TransitionComponent={Slide}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          elevation={6}
+          variant="filled"
+        >
+          Your comment was posted!
+        </Alert>
+      </Snackbar>
     </div>
+
     // </Modal>
   );
 };
