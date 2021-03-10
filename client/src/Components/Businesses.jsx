@@ -142,83 +142,106 @@ const Businesses = ({
   }, []);
 
   const content = (
-    <Grid container direction="row" justify="center" align="center" spacing={3}>
+    <Grid
+      container
+      direction="row"
+      justify="center"
+      align="stretch"
+      spacing={3}
+    >
       {businesses
         .filter((obj) => obj.industry.includes(`${contentLabel}`))
-        .map((item) => (
-          <Grid item md={6} lg={6} sm={12} xs={12} xl={3}>
-            <BackdropFilter
-              className="blurred"
-              filter={"blur(10px)"}
-              html2canvasOpts={{
-                allowTaint: true,
-              }}
-              onDraw={() => {
-                console.log("Rendered !");
-              }}
-            >
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h4"
-                    paragraph="true"
-                    style={{
-                      fontWeight: "900",
-                    }}
-                  >
-                    {item.businessName}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    align="justify"
-                    paragraph="true"
-                    style={{ fontWeight: "900" }}
-                  >
-                    {item.description}
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    align="justify"
-                    paragraph="true"
-                    style={{ fontWeight: "900" }}
-                  >
-                    Product Details: {item.productDetails}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    align="justify"
-                    paragraph="true"
-                    style={{ fontWeight: "900" }}
-                  >
-                    Contact info: {item.name} | {item.email} | {item.phone} |{" "}
-                    {item.address}
-                  </Typography>
-                  <Button
-                    variant="text"
-                    style={{
-                      backgroundColor: "rgba(0,0,0, 0.05)",
-                      width: "100%",
-                      color: "white",
-                    }}
-                    href={`//${item.url}`}
-                    target="_blank"
-                  >
-                    <p
-                      className="button-text"
+        .map((item) => {
+          var disableLink = false;
+          var buttonText = "Visit Website";
+
+          if (item.url === "N/A") {
+            disableLink = true;
+            buttonText = "No Website Available";
+          } else {
+            disableLink = false;
+            buttonText = "Visit Website";
+          }
+          return (
+            <Grid item md={6} lg={6} sm={12} xs={12} xl={3}>
+              <BackdropFilter
+                className="blurred"
+                filter={"blur(10px)"}
+                html2canvasOpts={{
+                  allowTaint: true,
+                }}
+                onDraw={() => {
+                  console.log("Rendered !");
+                }}
+              >
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      paragraph="true"
                       style={{
-                        color: "black",
-                        fontWeight: "normal",
+                        fontWeight: "900",
                       }}
                     >
-                      Visit Website
-                    </p>
-                  </Button>
-                </CardContent>
-              </Card>
-            </BackdropFilter>
-          </Grid>
-        ))}
+                      {item.businessName}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      align="justify"
+                      paragraph="true"
+                      style={{ fontWeight: "900" }}
+                    >
+                      {item.description}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      align="justify"
+                      paragraph="true"
+                      style={{ fontWeight: "900" }}
+                    >
+                      Product Details: {item.productDetails}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      align="justify"
+                      paragraph="true"
+                      style={{ fontWeight: "900" }}
+                    >
+                      Contact info: {item.name} | {item.email} | {item.phone} |{" "}
+                      {item.address}
+                    </Typography>
+                    <Button
+                      variant="text"
+                      disabled={disableLink}
+                      style={{
+                        backgroundColor:
+                          disableLink === true
+                            ? "rgba(250, 58, 0, 0.25)"
+                            : "rgba(0,0,0, 0.05)",
+                        color: disableLink === true ? "red" : "black",
+                        width: "100%",
+                        bottom: "0px",
+                      }}
+                      href={`//${item.url}`}
+                      target="_blank"
+                    >
+                      <p
+                        className="button-text"
+                        style={{
+                          color: "black",
+                          fontWeight: "normal",
+                        }}
+                      >
+                        {buttonText}
+                      </p>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </BackdropFilter>
+            </Grid>
+          );
+        })}
     </Grid>
   );
 

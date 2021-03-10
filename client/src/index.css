@@ -138,6 +138,7 @@ code {
 
 .blurred {
   background-color: rgba(255, 255, 255, 0.25);
+  height: 100%;
 }
 
 .Mui-selected {

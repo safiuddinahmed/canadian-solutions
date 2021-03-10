@@ -294,8 +294,9 @@ const Profile = ({
       </Grid>
       <Grid item md={12} sm={12} xs={12} style={{ textAlign: "left" }}>
         <Typography variant="body2" style={{ fontWeight: "bold" }}>
-          No need to add http in the website link field. Please contact our
-          support if you encounter any issues or need help.
+          No need to add http in the website link field. If you don't have a
+          website, please type N/A. Please contact our support if you encounter
+          any issues or need help.
         </Typography>
         <Typography
           variant="body2"

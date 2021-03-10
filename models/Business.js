@@ -31,12 +31,15 @@ const BusinessSchema = mongoose.Schema({
   },
   address: {
     type: String,
+    required: false,
   },
   phone: {
     type: String,
+    required: false,
   },
   url: {
     type: String,
+    required: false,
   },
 });
 

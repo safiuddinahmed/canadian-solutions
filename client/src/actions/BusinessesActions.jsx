@@ -50,7 +50,7 @@ export const updateBusiness = (business) => async (dispatch) => {
     productDetails: business.productDetails,
     address: business.address,
     phone: business.phone,
-    url: business.url,
+    url: business.url.toUpperCase(),
   };
 
   var res = "";
@@ -78,6 +78,10 @@ export const updateBusiness = (business) => async (dispatch) => {
   }
 
   const data = await res.json();
+
+  if (res.status === 200) {
+    alert("Your business details have been updated!");
+  }
 
   dispatch({
     type: UPDATE_BUSINESS,
