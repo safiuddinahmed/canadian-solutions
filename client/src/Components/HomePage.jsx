@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { Fade, Flip, Zoom } from "react-reveal";
+import Fade from "react-reveal/Fade";
+import Flip from "react-reveal/Flip";
+import Zoom from "react-reveal/Zoom";
 import Jump from "react-reveal/Jump";
 
 import { updateAppbar } from "../actions/AppbarActions";
@@ -158,7 +160,7 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
               textShadow: "1px 1px",
             }}
           >
-            <Fade top collapse>
+            <Fade top>
               Find the finest Canadian businesses and services catered for you
             </Fade>
           </Typography>
@@ -168,9 +170,7 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
             paragraph="true"
             style={{ color: "#FFFFFF", fontWeight: "900" }}
           >
-            <Fade top collapse>
-              Providing an interconnected array of solutions
-            </Fade>
+            <Fade top>Providing an interconnected array of solutions</Fade>
           </Typography>
 
           <div
@@ -180,7 +180,7 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
               justifyContent: "center",
             }}
           >
-            <Fade top cascade collapse>
+            <Fade top cascade>
               <Button
                 variant="contained"
                 className="main-button"

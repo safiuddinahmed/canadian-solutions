@@ -12,7 +12,7 @@ import {
   Modal,
 } from "@material-ui/core";
 import moment from "moment";
-import { Fade } from "react-reveal";
+import Fade from "react-reveal/Fade";
 
 import NewPost from "./NewPost";
 import CurrentPost from "./CurrentPost";

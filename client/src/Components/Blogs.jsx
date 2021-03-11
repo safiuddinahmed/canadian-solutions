@@ -11,7 +11,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
 } from "@material-ui/core";
-import { Fade, Flip } from "react-reveal";
+import Fade from "react-reveal/Fade";
 // import BackdropFilter from "react-backdrop-filter";
 import moment from "moment";
 

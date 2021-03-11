@@ -14,7 +14,6 @@ import Slide from "@material-ui/core/Slide";
 // import { Modal } from "react-router-modal";
 // import { useHistory } from "react-router-dom";
 import moment from "moment";
-import { Fade } from "react-reveal";
 
 import {
   getCurrentPost,
@@ -69,25 +68,19 @@ const CurrentPost = ({
 
   const classes = useStyles();
 
-  // const history = useHistory();
+  // const [open, setOpen] = useState(false);
 
-  // const handleClick = () => {
-  //   history.push("/forums");
+  // const handleClose = (event, reason) => {
+  //   if (reason === "clickaway") {
+  //     return;
+  //   }
+
+  //   setOpen(false);
   // };
-
-  const [open, setOpen] = useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const commentClick = () => {
     postComment(postID, comment);
-    setOpen(true);
+    // setOpen(true);
   };
 
   const [comment, setComment] = useState({
@@ -212,7 +205,7 @@ const CurrentPost = ({
           </Grid>
         </Card>
       </div>
-      <Snackbar
+      {/* <Snackbar
         open={open}
         autoHideDuration={3000}
         onClose={handleClose}
@@ -226,7 +219,7 @@ const CurrentPost = ({
         >
           Your comment was posted!
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </div>
 
     // </Modal>
