@@ -14,6 +14,7 @@ import Slide from "@material-ui/core/Slide";
 // import { Modal } from "react-router-modal";
 // import { useHistory } from "react-router-dom";
 import moment from "moment";
+import { Fade } from "react-reveal";
 
 import {
   getCurrentPost,
@@ -175,7 +176,14 @@ const CurrentPost = ({
                 </Card>
               </Grid>
             ))}
-            <Grid item md={8} sm={12} xs={12} style={{ textAlign: "left" }}>
+            <Grid
+              item
+              lg={8}
+              md={8}
+              sm={12}
+              xs={12}
+              style={{ textAlign: "left" }}
+            >
               <TextField
                 label="Post your comment"
                 variant="filled"
@@ -188,7 +196,7 @@ const CurrentPost = ({
                 }
               />
             </Grid>
-            <Grid item md={4} sm={12} xs={12} style={{ height: "100%" }}>
+            <Grid item lg={4} md={4} sm={12} xs={12} style={{ height: "100%" }}>
               <Button
                 variant="text"
                 onClick={commentClick}

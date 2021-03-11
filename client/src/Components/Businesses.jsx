@@ -28,6 +28,7 @@ import {
   faBusAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import BackdropFilter from "react-backdrop-filter";
+import Jump from "react-reveal/Jump";
 
 import { updateAppbar } from "../actions/AppbarActions";
 import { getAllBusinesses } from "../actions/BusinessesActions";
@@ -142,220 +143,224 @@ const Businesses = ({
   }, []);
 
   const content = (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      align="stretch"
-      spacing={3}
-    >
-      {businesses
-        .filter((obj) => obj.industry.includes(`${contentLabel}`))
-        .map((item) => {
-          var disableLink = false;
-          var buttonText = "Visit Website";
+    <Jump>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        align="stretch"
+        spacing={3}
+      >
+        {businesses
+          .filter((obj) => obj.industry.includes(`${contentLabel}`))
+          .map((item) => {
+            var disableLink = false;
+            var buttonText = "Visit Website";
 
-          if (item.url === "N/A") {
-            disableLink = true;
-            buttonText = "No Website Available";
-          } else {
-            disableLink = false;
-            buttonText = "Visit Website";
-          }
-          return (
-            <Grid item md={6} lg={6} sm={12} xs={12} xl={3}>
-              <BackdropFilter
-                className="blurred"
-                filter={"blur(10px)"}
-                html2canvasOpts={{
-                  allowTaint: true,
-                }}
-                onDraw={() => {
-                  console.log("Rendered !");
-                }}
-              >
-                <Card className={classes.card}>
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h4"
-                      paragraph="true"
-                      style={{
-                        fontWeight: "900",
-                      }}
-                    >
-                      {item.businessName}
-                    </Typography>
-                    <Typography
-                      variant="subtitle1"
-                      align="justify"
-                      paragraph="true"
-                      style={{ fontWeight: "900" }}
-                    >
-                      {item.description}
-                    </Typography>
-                    <Typography
-                      variant="subtitle2"
-                      align="justify"
-                      paragraph="true"
-                      style={{ fontWeight: "900" }}
-                    >
-                      Product Details: {item.productDetails}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      align="justify"
-                      paragraph="true"
-                      style={{ fontWeight: "900" }}
-                    >
-                      Contact info: {item.name} | {item.email} | {item.phone} |{" "}
-                      {item.address}
-                    </Typography>
-                    <Button
-                      variant="text"
-                      disabled={disableLink}
-                      style={{
-                        backgroundColor:
-                          disableLink === true
-                            ? "rgba(250, 58, 0, 0.25)"
-                            : "rgba(0,0,0, 0.05)",
-                        color: disableLink === true ? "red" : "black",
-                        width: "100%",
-                        bottom: "0px",
-                      }}
-                      href={`//${item.url}`}
-                      target="_blank"
-                    >
-                      <p
-                        className="button-text"
+            if (item.url === "N/A") {
+              disableLink = true;
+              buttonText = "No Website Available";
+            } else {
+              disableLink = false;
+              buttonText = "Visit Website";
+            }
+            return (
+              <Grid item md={6} lg={6} sm={12} xs={12} xl={3}>
+                <BackdropFilter
+                  className="blurred"
+                  filter={"blur(10px)"}
+                  html2canvasOpts={{
+                    allowTaint: true,
+                  }}
+                  onDraw={() => {
+                    console.log("Rendered !");
+                  }}
+                >
+                  <Card className={classes.card}>
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h4"
+                        paragraph="true"
                         style={{
-                          color: "black",
-                          fontWeight: "normal",
+                          fontWeight: "900",
                         }}
                       >
-                        {buttonText}
-                      </p>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </BackdropFilter>
-            </Grid>
-          );
-        })}
-    </Grid>
+                        {item.businessName}
+                      </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        align="justify"
+                        paragraph="true"
+                        style={{ fontWeight: "900" }}
+                      >
+                        {item.description}
+                      </Typography>
+                      <Typography
+                        variant="subtitle2"
+                        align="justify"
+                        paragraph="true"
+                        style={{ fontWeight: "900" }}
+                      >
+                        Product Details: {item.productDetails}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        align="justify"
+                        paragraph="true"
+                        style={{ fontWeight: "900" }}
+                      >
+                        Contact info: {item.name} | {item.email} | {item.phone}{" "}
+                        | {item.address}
+                      </Typography>
+                      <Button
+                        variant="text"
+                        disabled={disableLink}
+                        style={{
+                          backgroundColor:
+                            disableLink === true
+                              ? "rgba(250, 58, 0, 0.25)"
+                              : "rgba(0,0,0, 0.05)",
+                          color: disableLink === true ? "red" : "black",
+                          width: "100%",
+                          bottom: "0px",
+                        }}
+                        href={`//${item.url}`}
+                        target="_blank"
+                      >
+                        <p
+                          className="button-text"
+                          style={{
+                            color: "black",
+                            fontWeight: "normal",
+                          }}
+                        >
+                          {buttonText}
+                        </p>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </BackdropFilter>
+              </Grid>
+            );
+          })}
+      </Grid>
+    </Jump>
   );
 
   return (
     <div className="container">
-      <div className={classes.root}>
-        <Tabs
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="secondary"
-          color="secondary"
-          aria-label="Horizontal Tabs"
-          className={classes.tabs}
-        >
-          <Tab
-            label="Art"
-            icon={<FontAwesomeIcon icon={faPalette} size="lg" />}
-            {...a11yProps(0)}
-          />
-          <Tab
-            label="Automotive"
-            icon={<FontAwesomeIcon icon={faCar} size="lg" />}
-            {...a11yProps(1)}
-          />
-          <Tab
-            label="Construction"
-            icon={<FontAwesomeIcon icon={faToolbox} size="lg" />}
-            {...a11yProps(2)}
-          />
-          <Tab
-            label="Consultancy"
-            icon={<FontAwesomeIcon icon={faHandsHelping} size="lg" />}
-            {...a11yProps(3)}
-          />
-          <Tab
-            label="Education"
-            icon={<FontAwesomeIcon icon={faUserGraduate} size="lg" />}
-            {...a11yProps(4)}
-          />
-          <Tab
-            label="Entertainment"
-            icon={<FontAwesomeIcon icon={faMusic} size="lg" />}
-            {...a11yProps(5)}
-          />
-          <Tab
-            label="Finance"
-            icon={<FontAwesomeIcon icon={faMoneyBillWave} size="lg" />}
-            {...a11yProps(6)}
-          />
-          <Tab
-            label="Food and Beverage"
-            icon={<FontAwesomeIcon icon={faHamburger} size="lg" />}
-            {...a11yProps(7)}
-          />
-          <Tab
-            label="Marketing"
-            icon={<FontAwesomeIcon icon={faPoll} size="lg" />}
-            {...a11yProps(8)}
-          />
-          <Tab
-            label="Real Estate"
-            icon={<FontAwesomeIcon icon={faSign} size="lg" />}
-            {...a11yProps(9)}
-          />
-          <Tab
-            label="Technology"
-            icon={<FontAwesomeIcon icon={faLaptop} size="lg" />}
-            {...a11yProps(10)}
-          />
-          <Tab
-            label="Transportation"
-            icon={<FontAwesomeIcon icon={faBusAlt} size="lg" />}
-            {...a11yProps(11)}
-          />
-        </Tabs>
-        <TabPanel value={value} index={0} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={1} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={2} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={3} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={4} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={5} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={6} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={7} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={8} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={9} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={10} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-        <TabPanel value={value} index={11} className={classes.tabPanel}>
-          {content}
-        </TabPanel>
-      </div>
+      <Jump>
+        <div className={classes.root}>
+          <Tabs
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            textColor="secondary"
+            color="secondary"
+            aria-label="Horizontal Tabs"
+            className={classes.tabs}
+          >
+            <Tab
+              label="Art"
+              icon={<FontAwesomeIcon icon={faPalette} size="lg" />}
+              {...a11yProps(0)}
+            />
+            <Tab
+              label="Automotive"
+              icon={<FontAwesomeIcon icon={faCar} size="lg" />}
+              {...a11yProps(1)}
+            />
+            <Tab
+              label="Construction"
+              icon={<FontAwesomeIcon icon={faToolbox} size="lg" />}
+              {...a11yProps(2)}
+            />
+            <Tab
+              label="Consultancy"
+              icon={<FontAwesomeIcon icon={faHandsHelping} size="lg" />}
+              {...a11yProps(3)}
+            />
+            <Tab
+              label="Education"
+              icon={<FontAwesomeIcon icon={faUserGraduate} size="lg" />}
+              {...a11yProps(4)}
+            />
+            <Tab
+              label="Entertainment"
+              icon={<FontAwesomeIcon icon={faMusic} size="lg" />}
+              {...a11yProps(5)}
+            />
+            <Tab
+              label="Finance"
+              icon={<FontAwesomeIcon icon={faMoneyBillWave} size="lg" />}
+              {...a11yProps(6)}
+            />
+            <Tab
+              label="Food and Beverage"
+              icon={<FontAwesomeIcon icon={faHamburger} size="lg" />}
+              {...a11yProps(7)}
+            />
+            <Tab
+              label="Marketing"
+              icon={<FontAwesomeIcon icon={faPoll} size="lg" />}
+              {...a11yProps(8)}
+            />
+            <Tab
+              label="Real Estate"
+              icon={<FontAwesomeIcon icon={faSign} size="lg" />}
+              {...a11yProps(9)}
+            />
+            <Tab
+              label="Technology"
+              icon={<FontAwesomeIcon icon={faLaptop} size="lg" />}
+              {...a11yProps(10)}
+            />
+            <Tab
+              label="Transportation"
+              icon={<FontAwesomeIcon icon={faBusAlt} size="lg" />}
+              {...a11yProps(11)}
+            />
+          </Tabs>
+          <TabPanel value={value} index={0} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={1} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={2} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={3} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={4} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={5} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={6} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={7} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={8} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={9} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={10} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+          <TabPanel value={value} index={11} className={classes.tabPanel}>
+            {content}
+          </TabPanel>
+        </div>
+      </Jump>
     </div>
   );
 };

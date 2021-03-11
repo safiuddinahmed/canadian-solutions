@@ -19,6 +19,7 @@ import Alert from "@material-ui/lab/Alert";
 import Slide from "@material-ui/core/Slide";
 import BackdropFilter from "react-backdrop-filter";
 import moment from "moment";
+import Jump from "react-reveal/Jump";
 
 import { updateAppbar } from "../actions/AppbarActions";
 import { getBusiness, updateBusiness } from "../actions/BusinessesActions";
@@ -412,150 +413,163 @@ const Profile = ({
   );
   return (
     <div className="container">
-      <div
-        className="inside-container"
-        style={{
-          backgroundColor: "rgba(0,0,0, 0.08)",
-        }}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="flex-start"
-          spacing={4}
+      <Jump>
+        <div
+          className="inside-container"
           style={{
-            paddingTop: "30px",
-            paddingBottom: "30px",
-            color: "black",
+            backgroundColor: "rgba(0,0,0, 0.08)",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
-            <br></br>
-            <Typography
-              variant="h4"
-              style={{ textAlign: "left", fontWeight: "900" }}
-            >
-              Business Details
-            </Typography>
-            <Typography variant="body2" style={{ textAlign: "left" }}>
-              We will use this information to display your business' details.
-            </Typography>
-          </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
-            <BackdropFilter
-              className="blurred"
-              filter={"blur(10px)"}
-              html2canvasOpts={{
-                allowTaint: true,
-              }}
-              onDraw={() => {
-                console.log("Rendered !");
+          <Jump>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="flex-start"
+              spacing={4}
+              style={{
+                paddingTop: "30px",
+                paddingBottom: "30px",
+                color: "black",
               }}
             >
-              <Card
-                style={{
-                  padding: "5%",
-                  backgroundColor: "transparent",
-                  // backgroundColor: "rgb(0,0,0)",
-                  // backgroundColor: "rgba(0,0,0, 0.06)",
-                  color: "black",
-                  boxShadow: "none",
-                }}
-              >
-                {currentBusiness !== "" && businessForm}
+              <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
+                <br></br>
+                <Typography
+                  variant="h4"
+                  style={{ textAlign: "left", fontWeight: "900" }}
+                >
+                  Business Details
+                </Typography>
+                <Typography variant="body2" style={{ textAlign: "left" }}>
+                  We will use this information to display your business'
+                  details.
+                </Typography>
+              </Grid>
+              <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
+                <BackdropFilter
+                  className="blurred"
+                  filter={"blur(10px)"}
+                  html2canvasOpts={{
+                    allowTaint: true,
+                  }}
+                  onDraw={() => {
+                    console.log("Rendered !");
+                  }}
+                >
+                  <Card
+                    style={{
+                      padding: "5%",
+                      backgroundColor: "transparent",
+                      // backgroundColor: "rgb(0,0,0)",
+                      // backgroundColor: "rgba(0,0,0, 0.06)",
+                      color: "black",
+                      boxShadow: "none",
+                    }}
+                  >
+                    {currentBusiness !== "" && businessForm}
 
-                {currentBusiness === "" && businessForm}
-              </Card>
-            </BackdropFilter>
-          </Grid>
-        </Grid>
-      </div>
-      <div
-        className="inside-container"
-        style={{
-          backgroundColor: "rgba(0,0,0, 0.08)",
-          marginTop: "60px",
-        }}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="flex-start"
-          spacing={4}
+                    {currentBusiness === "" && businessForm}
+                  </Card>
+                </BackdropFilter>
+              </Grid>
+            </Grid>
+          </Jump>
+        </div>
+      </Jump>
+      <Jump>
+        <div
+          className="inside-container"
           style={{
-            paddingTop: "30px",
-            paddingBottom: "30px",
-            color: "black",
+            backgroundColor: "rgba(0,0,0, 0.08)",
+            marginTop: "60px",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
-            <br></br>
-            <Typography
-              variant="h4"
-              style={{ textAlign: "left", fontWeight: "900" }}
+          <Jump>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="flex-start"
+              spacing={4}
+              style={{
+                paddingTop: "30px",
+                paddingBottom: "30px",
+                color: "black",
+              }}
             >
-              Your Posts
-            </Typography>
-            <Typography variant="body2" style={{ textAlign: "left" }}>
-              Take a look at the discussions you have started. Click on a forum
-              post to expand it and view it. You can also view comments and make
-              new ones.
-            </Typography>
-          </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
-            {content}
-          </Grid>
-        </Grid>
+              <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
+                <br></br>
+                <Typography
+                  variant="h4"
+                  style={{ textAlign: "left", fontWeight: "900" }}
+                >
+                  Your Posts
+                </Typography>
+                <Typography variant="body2" style={{ textAlign: "left" }}>
+                  Take a look at the discussions you have started. Click on a
+                  forum post to expand it and view it. You can also view
+                  comments and make new ones.
+                </Typography>
+              </Grid>
+              <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
+                {content}
+              </Grid>
+            </Grid>
+          </Jump>
 
-        <Modal
-          open={openPost}
-          onClose={handleClosePost}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          <CurrentPost postID={postID} />
-        </Modal>
-      </div>
+          <Modal
+            open={openPost}
+            onClose={handleClosePost}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <CurrentPost postID={postID} />
+          </Modal>
+        </div>
+      </Jump>
 
-      <div
-        className="inside-container"
-        style={{
-          backgroundColor: "rgba(0,0,0, 0.08)",
-          marginTop: "60px",
-        }}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="flex-start"
-          spacing={4}
+      <Jump>
+        <div
+          className="inside-container"
           style={{
-            paddingTop: "30px",
-            paddingBottom: "30px",
-            color: "black",
+            backgroundColor: "rgba(0,0,0, 0.08)",
+            marginTop: "60px",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
-            <br></br>
-            <Typography
-              variant="h4"
-              style={{ textAlign: "left", fontWeight: "900" }}
+          <Jump>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="flex-start"
+              spacing={4}
+              style={{
+                paddingTop: "30px",
+                paddingBottom: "30px",
+                color: "black",
+              }}
             >
-              Your Performance
-            </Typography>
-            <Typography variant="body2" style={{ textAlign: "left" }}>
-              View how much traffic Canadian Solutions generated for you in the
-              past week.
-            </Typography>
-          </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
-            <Chart />
-          </Grid>
-        </Grid>
-      </div>
+              <Grid item md={3} xs={12} sm={12} style={{ padding: "5%" }}>
+                <br></br>
+                <Typography
+                  variant="h4"
+                  style={{ textAlign: "left", fontWeight: "900" }}
+                >
+                  Your Performance
+                </Typography>
+                <Typography variant="body2" style={{ textAlign: "left" }}>
+                  View how much traffic Canadian Solutions generated for you in
+                  the past week.
+                </Typography>
+              </Grid>
+              <Grid item md={8} xs={12} sm={12} style={{ padding: "5%" }}>
+                <Chart />
+              </Grid>
+            </Grid>
+          </Jump>
+        </div>
+      </Jump>
       <Snackbar
         open={open}
         autoHideDuration={3000}

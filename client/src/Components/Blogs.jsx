@@ -11,6 +11,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
 } from "@material-ui/core";
+import { Fade, Flip } from "react-reveal";
 // import BackdropFilter from "react-backdrop-filter";
 import moment from "moment";
 
@@ -83,16 +84,17 @@ const Blogs = ({ updateAppbar, blogs: { blogs }, getBlogs }) => {
   };
 
   const content = (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      spacing={3}
-    >
-      {blogs.sort(propComparator(sort)).map((item) => (
-        <Grid item md={8} lg={8} sm={12} xs={12} xl={8}>
-          {/* <BackdropFilter
+    <Fade left cascade>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        spacing={3}
+      >
+        {blogs.sort(propComparator(sort)).map((item) => (
+          <Grid item md={8} lg={8} sm={12} xs={12} xl={8}>
+            {/* <BackdropFilter
             className="blurred"
             filter={"blur(10px)"}
             html2canvasOpts={{
@@ -102,66 +104,67 @@ const Blogs = ({ updateAppbar, blogs: { blogs }, getBlogs }) => {
               console.log("Rendered !");
             }}
           > */}
-          <Card
-            className="inside-container"
-            style={{
-              backgroundColor: "rgba(0,0,0, 0.08)",
-              display: "flex",
-            }}
-          >
-            <CardMedia
-              className={classes.cover}
-              image={item.image}
-              title="Blog posts"
-            />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography
-                  component="h5"
-                  variant="h5"
-                  style={{
-                    fontFamily: "Scope One, sans-serif",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {item.name}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {moment(item.date).format("LL")}
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                <Button
-                  variant="text"
-                  style={{
-                    backgroundColor: "rgba(0,0,0, 0.05)",
-                    width: "50%",
-                    height: "60%",
-                    color: "white",
-                  }}
-                  href={item.url}
-                  target="_blank"
-                >
-                  <p
-                    className="button-text"
+            <Card
+              className="inside-container"
+              style={{
+                backgroundColor: "rgba(0,0,0, 0.08)",
+                display: "flex",
+              }}
+            >
+              <CardMedia
+                className={classes.cover}
+                image={item.image}
+                title="Blog posts"
+              />
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography
+                    component="h5"
+                    variant="h5"
                     style={{
-                      color: "black",
-                      fontWeight: "normal",
+                      fontFamily: "Scope One, sans-serif",
+                      fontWeight: "bold",
                     }}
                   >
-                    Read More
-                  </p>
-                </Button>
+                    {item.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {item.name}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {moment(item.date).format("LL")}
+                  </Typography>
+                </CardContent>
+                <div className={classes.controls}>
+                  <Button
+                    variant="text"
+                    style={{
+                      backgroundColor: "rgba(0,0,0, 0.05)",
+                      width: "50%",
+                      height: "60%",
+                      color: "white",
+                    }}
+                    href={item.url}
+                    target="_blank"
+                  >
+                    <p
+                      className="button-text"
+                      style={{
+                        color: "black",
+                        fontWeight: "normal",
+                      }}
+                    >
+                      Read More
+                    </p>
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Card>
-          {/* </BackdropFilter> */}
-        </Grid>
-      ))}
-    </Grid>
+            </Card>
+            {/* </BackdropFilter> */}
+          </Grid>
+        ))}
+      </Grid>
+    </Fade>
   );
 
   return (
@@ -174,16 +177,18 @@ const Blogs = ({ updateAppbar, blogs: { blogs }, getBlogs }) => {
         spacing={3}
         style={{ paddingBottom: "30px" }}
       >
-        <BottomNavigation
-          value={sort}
-          onChange={sortChange}
-          className={classes.navigation}
-          showLabels="true"
-        >
-          <BottomNavigationAction label="Sort by title" value="title" />
-          <BottomNavigationAction label="Sort by latest" value="date" />
-          <BottomNavigationAction label="Sort by author name" value="name" />
-        </BottomNavigation>
+        <Fade left>
+          <BottomNavigation
+            value={sort}
+            onChange={sortChange}
+            className={classes.navigation}
+            showLabels="true"
+          >
+            <BottomNavigationAction label="Sort by title" value="title" />
+            <BottomNavigationAction label="Sort by latest" value="date" />
+            <BottomNavigationAction label="Sort by author name" value="name" />
+          </BottomNavigation>
+        </Fade>
       </Grid>
       {content}
     </div>

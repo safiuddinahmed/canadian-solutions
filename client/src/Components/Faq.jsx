@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import BackdropFilter from "react-backdrop-filter";
+import Fade from "react-reveal/Fade";
+import Jump from "react-reveal/Jump";
 
 import { updateAppbar } from "../actions/AppbarActions";
 
@@ -63,80 +65,86 @@ const Faq = ({ updateAppbar }) => {
   ];
   return (
     <div className="container">
-      <div
-        className="inside-container"
-        style={{
-          backgroundColor: "rgba(0,0,0, 0.08)",
-        }}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="flex-start"
-          spacing={4}
+      <Jump>
+        <div
+          className="inside-container"
           style={{
-            paddingTop: "30px",
-            paddingBottom: "30px",
-            color: "black",
+            backgroundColor: "rgba(0,0,0, 0.08)",
           }}
         >
-          <Grid item md={3} xs={12} sm={12} style={{ padding: "30px" }}>
-            <br></br>
-            <Typography
-              variant="h4"
-              style={{ textAlign: "left", fontWeight: "900" }}
-            >
-              Frequently Asked Questions
-            </Typography>
-            <Typography variant="body2" style={{ textAlign: "left" }}>
-              Please contact our customer service team if you have any other
-              questions.
-            </Typography>
-          </Grid>
-          <Grid item md={8} xs={12} sm={12} style={{ padding: "30px" }}>
-            <BackdropFilter
-              className="blurred"
-              filter={"blur(10px)"}
-              html2canvasOpts={{
-                allowTaint: true,
-              }}
-              onDraw={() => {
-                console.log("Rendered !");
+          <Fade top cascade>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="flex-start"
+              spacing={4}
+              style={{
+                paddingTop: "30px",
+                paddingBottom: "30px",
+                color: "black",
               }}
             >
-              <Card
-                style={{
-                  padding: "5%",
-                  backgroundColor: "transparent",
-                  color: "black",
-                  boxShadow: "none",
-                }}
-              >
-                {accordionContent.map((item) => (
-                  <Accordion style={{ backgroundColor: "rgba(0,0,0, 0.06)" }}>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="faq-content"
-                      id="faq-header"
-                    >
-                      <Typography className={classes.heading}>
-                        {item.question}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails style={{ padding: "3%" }}>
-                      <Typography paragraph="true" align="justify">
-                        {item.answer}
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                ))}
-              </Card>
-            </BackdropFilter>
-          </Grid>
-          {/* <Grid item md={3} xs={12} sm={12}></Grid> */}
-        </Grid>
-      </div>
+              <Grid item md={3} xs={12} sm={12} style={{ padding: "30px" }}>
+                <br></br>
+                <Typography
+                  variant="h4"
+                  style={{ textAlign: "left", fontWeight: "900" }}
+                >
+                  Frequently Asked Questions
+                </Typography>
+                <Typography variant="body2" style={{ textAlign: "left" }}>
+                  Please contact our customer service team if you have any other
+                  questions.
+                </Typography>
+              </Grid>
+              <Grid item md={8} xs={12} sm={12} style={{ padding: "30px" }}>
+                <BackdropFilter
+                  className="blurred"
+                  filter={"blur(10px)"}
+                  html2canvasOpts={{
+                    allowTaint: true,
+                  }}
+                  onDraw={() => {
+                    console.log("Rendered !");
+                  }}
+                >
+                  <Card
+                    style={{
+                      padding: "5%",
+                      backgroundColor: "transparent",
+                      color: "black",
+                      boxShadow: "none",
+                    }}
+                  >
+                    {accordionContent.map((item) => (
+                      <Accordion
+                        style={{ backgroundColor: "rgba(0,0,0, 0.06)" }}
+                      >
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="faq-content"
+                          id="faq-header"
+                        >
+                          <Typography className={classes.heading}>
+                            {item.question}
+                          </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails style={{ padding: "3%" }}>
+                          <Typography paragraph="true" align="justify">
+                            {item.answer}
+                          </Typography>
+                        </AccordionDetails>
+                      </Accordion>
+                    ))}
+                  </Card>
+                </BackdropFilter>
+              </Grid>
+              {/* <Grid item md={3} xs={12} sm={12}></Grid> */}
+            </Grid>
+          </Fade>
+        </div>
+      </Jump>
     </div>
   );
 };

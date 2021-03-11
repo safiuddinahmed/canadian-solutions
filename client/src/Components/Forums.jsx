@@ -12,6 +12,7 @@ import {
   Modal,
 } from "@material-ui/core";
 import moment from "moment";
+import { Fade } from "react-reveal";
 
 import NewPost from "./NewPost";
 import CurrentPost from "./CurrentPost";
@@ -116,22 +117,23 @@ const Forums = ({ updateAppbar, forums: { posts, comments }, getAllPosts }) => {
   };
 
   const content = (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      spacing={3}
-    >
-      <Grid item>
-        <Typography variant="body2" style={{ fontWeight: "bold" }}>
-          Click on a forum post to expand it and view it. You can also view
-          comments and make new ones.
-        </Typography>
-      </Grid>
-      {posts.sort(propComparator(sort)).map((item) => (
-        <Grid item md={8} lg={8} sm={12} xs={12} xl={8}>
-          {/* <BackdropFilter
+    <Fade left cascade>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        spacing={3}
+      >
+        <Grid item>
+          <Typography variant="body2" style={{ fontWeight: "bold" }}>
+            Click on a forum post to expand it and view it. You can also view
+            comments and make new ones.
+          </Typography>
+        </Grid>
+        {posts.sort(propComparator(sort)).map((item) => (
+          <Grid item md={8} lg={8} sm={12} xs={12} xl={8}>
+            {/* <BackdropFilter
             className="blurred"
             filter={"blur(10px)"}
             html2canvasOpts={{
@@ -141,61 +143,62 @@ const Forums = ({ updateAppbar, forums: { posts, comments }, getAllPosts }) => {
               console.log("Rendered !");
             }}
           > */}
-          <Card
-            className="inside-container"
-            style={{
-              backgroundColor: "rgba(0,0,0, 0.08)",
-              display: "flex",
-            }}
-          >
-            <CardActionArea onClick={() => viewPost(item._id)}>
-              {/* <CardMedia
+            <Card
+              className="inside-container"
+              style={{
+                backgroundColor: "rgba(0,0,0, 0.08)",
+                display: "flex",
+              }}
+            >
+              <CardActionArea onClick={() => viewPost(item._id)}>
+                {/* <CardMedia
               className={classes.cover}
               image={item.image}
               title="Live from space album cover"
             /> */}
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography
-                    component="h5"
-                    variant="h5"
-                    style={{
-                      fontFamily: "Scope One, sans-serif",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {item.title}
-                  </Typography>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: "20px",
-                      paddingBottom: "10px",
-                    }}
-                  >
-                    <Typography variant="subtitle1" color="textSecondary">
-                      {item.name}
-                    </Typography>
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
                     <Typography
-                      variant="subtitle1"
-                      color="textSecondary"
-                      // align="right"
+                      component="h5"
+                      variant="h5"
+                      style={{
+                        fontFamily: "Scope One, sans-serif",
+                        fontWeight: "bold",
+                      }}
                     >
-                      {moment(item.date).format("LLL")}
+                      {item.title}
                     </Typography>
-                  </div>
-                  <Typography component="h6" variant="h6">
-                    {item.description}
-                  </Typography>
-                </CardContent>
-              </div>
-            </CardActionArea>
-          </Card>
-          {/* </BackdropFilter> */}
-        </Grid>
-      ))}
-    </Grid>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "20px",
+                        paddingBottom: "10px",
+                      }}
+                    >
+                      <Typography variant="subtitle1" color="textSecondary">
+                        {item.name}
+                      </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        color="textSecondary"
+                        // align="right"
+                      >
+                        {moment(item.date).format("LLL")}
+                      </Typography>
+                    </div>
+                    <Typography component="h6" variant="h6">
+                      {item.description}
+                    </Typography>
+                  </CardContent>
+                </div>
+              </CardActionArea>
+            </Card>
+            {/* </BackdropFilter> */}
+          </Grid>
+        ))}
+      </Grid>
+    </Fade>
   );
 
   return (
@@ -208,17 +211,19 @@ const Forums = ({ updateAppbar, forums: { posts, comments }, getAllPosts }) => {
         spacing={3}
         style={{ paddingBottom: "30px" }}
       >
-        <BottomNavigation
-          value={sort}
-          onChange={sortChange}
-          className={classes.navigation}
-          showLabels="true"
-        >
-          <BottomNavigationAction label="Create new post" onClick={newPost} />
-          <BottomNavigationAction label="Sort by title" value="title" />
-          <BottomNavigationAction label="Sort by latest" value="date" />
-          <BottomNavigationAction label="Sort by author name" value="name" />
-        </BottomNavigation>
+        <Fade left cascade>
+          <BottomNavigation
+            value={sort}
+            onChange={sortChange}
+            className={classes.navigation}
+            showLabels="true"
+          >
+            <BottomNavigationAction label="Create new post" onClick={newPost} />
+            <BottomNavigationAction label="Sort by title" value="title" />
+            <BottomNavigationAction label="Sort by latest" value="date" />
+            <BottomNavigationAction label="Sort by author name" value="name" />
+          </BottomNavigation>
+        </Fade>
       </Grid>
       {content}
       <Modal

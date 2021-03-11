@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { Fade, Flip, Zoom } from "react-reveal";
+import Jump from "react-reveal/Jump";
 
 import { updateAppbar } from "../actions/AppbarActions";
 import { getLatestBlogs } from "../actions/BlogsActions";
@@ -156,7 +158,9 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
               textShadow: "1px 1px",
             }}
           >
-            Find the finest Canadian businesses and services catered for you
+            <Fade top collapse>
+              Find the finest Canadian businesses and services catered for you
+            </Fade>
           </Typography>
           <Typography
             variant="h5"
@@ -164,8 +168,11 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
             paragraph="true"
             style={{ color: "#FFFFFF", fontWeight: "900" }}
           >
-            Providing an interconnected array of solutions
+            <Fade top collapse>
+              Providing an interconnected array of solutions
+            </Fade>
           </Typography>
+
           <div
             style={{
               display: "flex",
@@ -173,56 +180,64 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
               justifyContent: "center",
             }}
           >
-            <Button
-              variant="contained"
-              className="main-button"
-              href="/businesses"
-              aria-label="Explore Businesses"
-            >
-              <p className="button-text">Explore</p>
-            </Button>
+            <Fade top cascade collapse>
+              <Button
+                variant="contained"
+                className="main-button"
+                href="/businesses"
+                aria-label="Explore Businesses"
+              >
+                <p className="button-text">Explore</p>
+              </Button>
+            </Fade>
           </div>
         </div>
       </div>
       <div>
         <div style={{ display: "grid", position: "relative" }}>
-          <div style={{ position: "relative", transform: "translateY(57.5%)" }}>
-            <img
-              style={{
-                position: "absolute",
-                left: "50%",
-                transform: "translate(-50%, 50%)",
-                bottom: "100%",
-                zIndex: "-1",
-              }}
-              alt="CN Tower"
-              src={CNTower}
-            />
-          </div>
+          <Jump>
+            <div
+              style={{ position: "relative", transform: "translateY(57.5%)" }}
+            >
+              <img
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  transform: "translate(-50%, 50%)",
+                  bottom: "100%",
+                  zIndex: "-1",
+                }}
+                alt="CN Tower"
+                src={CNTower}
+              />
+            </div>
+          </Jump>
         </div>
       </div>
       <Grid container direction="row" justify="center" className="overview">
         <Grid item md={3} />
         <Grid item md={6}>
           <div>
-            <Typography
-              variant="h3"
-              align="center"
-              paragraphy="true"
-              style={{ fontWeight: "bold" }}
-            >
-              The future starts now
-            </Typography>
-            <br />
-            <Typography variant="subtitle1" align="justify" paragraphy="true">
-              Canadian Solutions is an IT company based in Toronto, Canada,
-              which specializes in providing small businesses exposure
-              virtually. We aim to provide an interconnected array of services
-              and products on an online platform that will bring local
-              businesses together in Canada. The scope of the company is to help
-              registered organizations advertise their services to each other or
-              their clients effortlessly.
-            </Typography>
+            <Fade top cascade collapse>
+              <Typography
+                variant="h3"
+                align="center"
+                paragraphy="true"
+                style={{ fontWeight: "bold" }}
+              >
+                The future starts now
+              </Typography>
+              <br />
+              <Typography variant="subtitle1" align="justify" paragraphy="true">
+                Canadian Solutions is an IT company based in Toronto, Canada,
+                which specializes in providing small businesses exposure
+                virtually. We aim to provide an interconnected array of services
+                and products on an online platform that will bring local
+                businesses together in Canada. The scope of the company is to
+                help registered organizations advertise their services to each
+                other or their clients effortlessly.
+              </Typography>
+            </Fade>
           </div>
         </Grid>
         <Grid item md={3} />
@@ -231,20 +246,22 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
       <Grid container direction="row" justify="center" className="what-we-do">
         <Grid item md={3} />
         <Grid item md={6}>
-          <div>
-            <Typography
-              variant="h3"
-              align="center"
-              paragraphy="true"
-              style={{ fontWeight: "bold" }}
-            >
-              What we do
-            </Typography>
-            <br />
-            <Typography variant="subtitle1" align="center" paragraphy="true">
-              We provide a platform for you where your business matters
-            </Typography>
-          </div>
+          <Fade top cascade collapse>
+            <div>
+              <Typography
+                variant="h3"
+                align="center"
+                paragraphy="true"
+                style={{ fontWeight: "bold" }}
+              >
+                What we do
+              </Typography>
+              <br />
+              <Typography variant="subtitle1" align="center" paragraphy="true">
+                We provide a platform for you where your business matters
+              </Typography>
+            </div>
+          </Fade>
         </Grid>
         <Grid item md={3} />
         <Grid
@@ -256,41 +273,47 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
           style={{ paddingTop: "60px" }}
         >
           <Grid item md={4} align="center">
-            <div>
-              <img height="25%" width="25%" src={Popularity} alt="Exposure" />
-              <Typography variant="h5" align="center" paragraph="true">
-                Exposure
-              </Typography>
-              <Typography variant="subtitle1" align="center" paragraph="true">
-                Increasing your clientele by giving you an outlet and helping
-                you find the right services that could boost your business.
-              </Typography>
-            </div>
+            <Flip top cascade collapse>
+              <div>
+                <img height="25%" width="25%" src={Popularity} alt="Exposure" />
+                <Typography variant="h5" align="center" paragraph="true">
+                  Exposure
+                </Typography>
+                <Typography variant="subtitle1" align="center" paragraph="true">
+                  Increasing your clientele by giving you an outlet and helping
+                  you find the right services that could boost your business.
+                </Typography>
+              </div>
+            </Flip>
           </Grid>
           <Grid item md={4} align="center">
-            <div>
-              <img height="25%" width="25%" src={Group} alt="Interactions" />
-              <Typography variant="h5" align="center" paragraph="true">
-                Interactions
-              </Typography>
-              <Typography variant="subtitle1" align="center" paragraph="true">
-                Providing you with a platform that makes it easier for you to
-                interact with other businesses where you can learn and share.
-              </Typography>
-            </div>
+            <Flip top cascade collapse>
+              <div>
+                <img height="25%" width="25%" src={Group} alt="Interactions" />
+                <Typography variant="h5" align="center" paragraph="true">
+                  Interactions
+                </Typography>
+                <Typography variant="subtitle1" align="center" paragraph="true">
+                  Providing you with a platform that makes it easier for you to
+                  interact with other businesses where you can learn and share.
+                </Typography>
+              </div>
+            </Flip>
           </Grid>
           <Grid item md={4} align="center">
-            <div>
-              <img height="25%" width="25%" src={Research} alt="Research" />
-              <Typography variant="h5" align="center" paragraph="true">
-                Research
-              </Typography>
-              <Typography variant="subtitle1" align="center" paragraph="true">
-                Preparing a collection of research that will help you survive
-                and grow in this economy. Useful tips and documents will be
-                posted in the Blogs section.
-              </Typography>
-            </div>
+            <Flip top cascade collapse>
+              <div>
+                <img height="25%" width="25%" src={Research} alt="Research" />
+                <Typography variant="h5" align="center" paragraph="true">
+                  Research
+                </Typography>
+                <Typography variant="subtitle1" align="center" paragraph="true">
+                  Preparing a collection of research that will help you survive
+                  and grow in this economy. Useful tips and documents will be
+                  posted in the Blogs section.
+                </Typography>
+              </div>
+            </Flip>
           </Grid>
         </Grid>
         <Grid
@@ -321,49 +344,55 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
           style={{ paddingTop: "30px" }}
         >
           <Grid item md={4} sm={4}>
-            <Avatar
-              alt="Montreal"
-              className={classes.largeAvatar}
-              src={Montreal}
-            />
-            <Typography
-              variant="subtitle1"
-              align="center"
-              paragraph="true"
-              style={{ paddingTop: "10px" }}
-            >
-              Montreal
-            </Typography>
+            <Zoom top cascade collapse>
+              <Avatar
+                alt="Montreal"
+                className={classes.largeAvatar}
+                src={Montreal}
+              />
+              <Typography
+                variant="subtitle1"
+                align="center"
+                paragraph="true"
+                style={{ paddingTop: "10px" }}
+              >
+                Montreal
+              </Typography>
+            </Zoom>
           </Grid>
           <Grid item md={4} sm={4}>
-            <Avatar
-              alt="Toronto"
-              className={classes.largeAvatar}
-              src={Toronto}
-            />
-            <Typography
-              variant="subtitle1"
-              align="center"
-              paragraph="true"
-              style={{ paddingTop: "10px" }}
-            >
-              Toronto (main office)
-            </Typography>
+            <Zoom top cascade collapse>
+              <Avatar
+                alt="Toronto"
+                className={classes.largeAvatar}
+                src={Toronto}
+              />
+              <Typography
+                variant="subtitle1"
+                align="center"
+                paragraph="true"
+                style={{ paddingTop: "10px" }}
+              >
+                Toronto (main office)
+              </Typography>
+            </Zoom>
           </Grid>
           <Grid item md={4} sm={4}>
-            <Avatar
-              alt="Vancouver"
-              className={classes.largeAvatar}
-              src={Vancouver}
-            />
-            <Typography
-              variant="subtitle1"
-              align="center"
-              paragraph="true"
-              style={{ paddingTop: "10px" }}
-            >
-              Vancouver
-            </Typography>
+            <Zoom top cascade collapse>
+              <Avatar
+                alt="Vancouver"
+                className={classes.largeAvatar}
+                src={Vancouver}
+              />
+              <Typography
+                variant="subtitle1"
+                align="center"
+                paragraph="true"
+                style={{ paddingTop: "10px" }}
+              >
+                Vancouver
+              </Typography>
+            </Zoom>
           </Grid>
         </Grid>
       </Grid>
@@ -372,14 +401,16 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
         <Grid item md={3} />
         <Grid item md={6}>
           <div>
-            <Typography
-              variant="h3"
-              align="center"
-              paragraphy="true"
-              style={{ fontWeight: "bold" }}
-            >
-              Recent Blog Posts
-            </Typography>
+            <Fade top cascade collapse>
+              <Typography
+                variant="h3"
+                align="center"
+                paragraphy="true"
+                style={{ fontWeight: "bold" }}
+              >
+                Recent Blog Posts
+              </Typography>
+            </Fade>
           </div>
         </Grid>
         <Grid item md={3} />
@@ -393,39 +424,41 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
         >
           {latestBlogs.map((item) => (
             <Grid item md={4} align="center">
-              <div className={classes.root}>
-                <ButtonBase
-                  focusRipple
-                  className={classes.image}
-                  focusVisibleClassName={classes.focusVisible}
-                  style={{
-                    width: "100%",
-                  }}
-                  href={item.url}
-                  target="_blank"
-                  aria-label="Latest Blog Posts"
-                >
-                  <span
-                    className={classes.imageSrc}
+              <Flip top cascade collapse>
+                <div className={classes.root}>
+                  <ButtonBase
+                    focusRipple
+                    className={classes.image}
+                    focusVisibleClassName={classes.focusVisible}
                     style={{
-                      backgroundImage: `url(${item.image})`,
-                      backgroundSize: "cover",
+                      width: "100%",
                     }}
-                  />
-                  <span className={classes.imageBackdrop} />
-                  <span className={classes.imageButton}>
-                    <Typography
-                      component="span"
-                      variant="subtitle1"
-                      color="inherit"
-                      className={classes.imageTitle}
-                    >
-                      {item.title}
-                      <span className={classes.imageMarked} />
-                    </Typography>
-                  </span>
-                </ButtonBase>{" "}
-              </div>
+                    href={item.url}
+                    target="_blank"
+                    aria-label="Latest Blog Posts"
+                  >
+                    <span
+                      className={classes.imageSrc}
+                      style={{
+                        backgroundImage: `url(${item.image})`,
+                        backgroundSize: "cover",
+                      }}
+                    />
+                    <span className={classes.imageBackdrop} />
+                    <span className={classes.imageButton}>
+                      <Typography
+                        component="span"
+                        variant="subtitle1"
+                        color="inherit"
+                        className={classes.imageTitle}
+                      >
+                        {item.title}
+                        <span className={classes.imageMarked} />
+                      </Typography>
+                    </span>
+                  </ButtonBase>{" "}
+                </div>
+              </Flip>
             </Grid>
           ))}
         </Grid>
@@ -435,14 +468,16 @@ const HomePage = ({ updateAppbar, getLatestBlogs, blogs: { latestBlogs } }) => {
           justify="center"
           style={{ paddingTop: "50px" }}
         >
-          <Button
-            aria-label="View all blog posts"
-            variant="contained"
-            className="main-button"
-            href="/blogs"
-          >
-            <p className="button-text">View All</p>
-          </Button>
+          <Fade top cascade collapse>
+            <Button
+              aria-label="View all blog posts"
+              variant="contained"
+              className="main-button"
+              href="/blogs"
+            >
+              <p className="button-text">View All</p>
+            </Button>
+          </Fade>
         </Grid>
       </Grid>
     </div>

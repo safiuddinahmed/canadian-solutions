@@ -73,6 +73,10 @@ code {
   width: 240px;
 }
 
+.main-button:hover {
+  transition: all 0.2s ease-out;
+}
+
 .business-button {
   /* background: linear-gradient(202deg, #FFFFFF 0%, #e3f2fd 100%); */
   background-color: rgb(0, 0, 0);
