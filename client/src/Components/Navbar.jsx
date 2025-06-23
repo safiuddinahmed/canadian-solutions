@@ -32,6 +32,7 @@ import ProfilePage from "./Profile";
 import BlogsPage from "./Blogs";
 import ForumsPage from "./Forums";
 import LoginPage from "./Login";
+import SignupPage from "./Signup";
 import FAQsPage from "./Faq";
 import PrivateRoute from "./PrivateRoute";
 
@@ -385,6 +386,7 @@ const Navbar = ({ appbar: { menuSelected }, updateAppbar }) => {
               <PrivateRoute path="/forums" component={ForumsPage} />
               <Route path="/faqs" component={FAQsPage} />
               <Route path="/login" component={LoginPage} />
+              <Route path="/signup" component={SignupPage} />
             </Switch>
           </main>
         </Router>

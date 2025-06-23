@@ -4,6 +4,9 @@ export const UPDATE_APPBAR = "UPDATE_APPBAR";
 export const LOGIN_USER = "LOGIN_USER";
 export const GET_USER = "GET_USER";
 export const LOGIN_ERROR = "LOGIN_ERROR";
+export const REGISTER_USER = "REGISTER_USER";
+export const REGISTER_ERROR = "REGISTER_ERROR";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 
 // Business Types
 export const GET_BUSINESS = "GET_BUSINESS";

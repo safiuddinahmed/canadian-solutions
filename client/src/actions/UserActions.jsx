@@ -1,4 +1,11 @@
-import { LOGIN_USER, GET_USER, LOGIN_ERROR } from "../actions/types";
+import {
+  LOGIN_USER,
+  GET_USER,
+  LOGIN_ERROR,
+  REGISTER_USER,
+  REGISTER_ERROR,
+  REGISTER_SUCCESS,
+} from "../actions/types";
 
 export const loginUser = (user) => async (dispatch) => {
   const postBody = {
@@ -69,4 +76,60 @@ export const loginUser = (user) => async (dispatch) => {
     type: LOGIN_ERROR,
     payload: loginError,
   });
+};
+
+export const registerUser = (user) => async (dispatch) => {
+  const postBody = {
+    name: user.name,
+    email: user.email,
+    password: user.password,
+  };
+
+  try {
+    const res = await fetch("/api/users", {
+      method: "POST",
+      body: JSON.stringify(postBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    if (res.status === 200) {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: "Registration successful! Please login with your credentials.",
+      });
+      dispatch({
+        type: REGISTER_ERROR,
+        payload: "",
+      });
+    } else {
+      let errorMessage = "Registration failed. Please try again.";
+      if (data.msg) {
+        errorMessage = data.msg;
+      } else if (data.errors && data.errors.length > 0) {
+        errorMessage = data.errors[0].msg;
+      }
+
+      dispatch({
+        type: REGISTER_ERROR,
+        payload: errorMessage,
+      });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: "",
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: REGISTER_ERROR,
+      payload: "Network error. Please check your connection and try again.",
+    });
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: "",
+    });
+  }
 };

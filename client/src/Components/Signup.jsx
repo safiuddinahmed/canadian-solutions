@@ -1,36 +1,66 @@
 import React, { useState } from "react";
 import { Grid, Typography, TextField, Button, Card } from "@material-ui/core";
-// import { makeStyles } from "@material-ui/core/styles";
 import BackdropFilter from "react-backdrop-filter";
 import Logo from "../Images/CanadianSolutionsLogo.png";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { loginUser } from "../actions/UserActions";
+import { registerUser } from "../actions/UserActions";
 
-const Login = ({ loginUser, userInfo }) => {
-  // const classes = useStyles();
-
+const Signup = ({ registerUser, userInfo }) => {
   const [user, setUser] = useState({
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
-  const loginClick = () => {
-    loginUser(user);
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Name validation
+    if (!user.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    // Email validation
+    if (!user.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(user.email)) {
+      newErrors.email = "Email is invalid";
+    }
+
+    // Password validation
+    if (!user.password) {
+      newErrors.password = "Password is required";
+    } else if (user.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    // Confirm password validation
+    if (!user.confirmPassword) {
+      newErrors.confirmPassword = "Please confirm your password";
+    } else if (user.password !== user.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const signupClick = () => {
+    if (validateForm()) {
+      registerUser(user);
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      loginUser(user);
+      signupClick();
     }
   };
-
-  var error = false;
-
-  if (userInfo.loginError === "Invalid Credentials") {
-    error = true;
-  }
 
   return (
     <div className="container">
@@ -68,8 +98,6 @@ const Login = ({ loginUser, userInfo }) => {
                 style={{
                   padding: "30px",
                   backgroundColor: "transparent",
-                  // backgroundColor: "rgb(0,0,0)",
-                  // backgroundColor: "rgba(0,0,0, 0.06)",
                   color: "black",
                   boxShadow: "none",
                 }}
@@ -88,19 +116,61 @@ const Login = ({ loginUser, userInfo }) => {
                       paragraph="true"
                       style={{ textTransform: "uppercase" }}
                     >
-                      Welcome to <strong>Canadian Solutions</strong>
+                      Join <strong>Canadian Solutions</strong>
                     </Typography>
                     <Typography variant="subtitle1" align="justify">
-                      Canadian Solutions is an IT company based in Toronto,
-                      Canada, which specializes in providing small businesses
-                      exposure virtually. We aim to provide an interconnected
-                      array of services and products on an online platform that
-                      will bring local businesses together in Canada. The scope
-                      of the company is to help registered organizations
-                      advertise their services to each other or their clients
-                      effortlessly.
+                      Create your account to connect with Canadian businesses,
+                      share insights through our blog platform, and participate
+                      in community discussions.
                     </Typography>
                   </Grid>
+
+                  {/* Success Message */}
+                  {userInfo.registerSuccess && (
+                    <Grid item md={12} sm={12} xs={12}>
+                      <Typography
+                        variant="body2"
+                        style={{
+                          fontWeight: "bold",
+                          color: "green",
+                          textAlign: "center",
+                        }}
+                      >
+                        {userInfo.registerSuccess}
+                      </Typography>
+                    </Grid>
+                  )}
+
+                  {/* Name Field */}
+                  <Grid
+                    item
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    style={{ textAlign: "left" }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      style={{ fontWeight: "900" }}
+                    >
+                      Full Name
+                    </Typography>
+                    <TextField
+                      variant="filled"
+                      fullWidth
+                      margin="dense"
+                      placeholder="Enter your full name"
+                      autoFocus={true}
+                      value={user.name}
+                      onChange={(e) =>
+                        setUser({ ...user, name: e.target.value })
+                      }
+                      error={!!errors.name}
+                      helperText={errors.name}
+                    />
+                  </Grid>
+
+                  {/* Email Field */}
                   <Grid
                     item
                     md={12}
@@ -118,16 +188,18 @@ const Login = ({ loginUser, userInfo }) => {
                       variant="filled"
                       fullWidth
                       margin="dense"
-                      placeholder="Email"
-                      autoFocus={true}
-                      defaultValue={user.email}
+                      placeholder="Enter your email address"
+                      type="email"
+                      value={user.email}
                       onChange={(e) =>
                         setUser({ ...user, email: e.target.value })
                       }
-                      error={error}
+                      error={!!errors.email}
+                      helperText={errors.email}
                     />
                   </Grid>
 
+                  {/* Password Field */}
                   <Grid
                     item
                     md={12}
@@ -145,52 +217,89 @@ const Login = ({ loginUser, userInfo }) => {
                       variant="filled"
                       fullWidth
                       margin="dense"
-                      placeholder="Password"
+                      placeholder="Create a password (min 6 characters)"
                       type="password"
                       value={user.password}
                       onChange={(e) =>
                         setUser({ ...user, password: e.target.value })
                       }
-                      onKeyPress={handleKeyDown}
-                      error={error}
+                      error={!!errors.password}
+                      helperText={errors.password}
                     />
-                    <Typography
-                      variant="body2"
-                      style={{ fontWeight: "bold", color: "red" }}
-                    >
-                      {userInfo.loginError}
-                    </Typography>
                   </Grid>
+
+                  {/* Confirm Password Field */}
+                  <Grid
+                    item
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    style={{ textAlign: "left" }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      style={{ fontWeight: "900" }}
+                    >
+                      Confirm Password
+                    </Typography>
+                    <TextField
+                      variant="filled"
+                      fullWidth
+                      margin="dense"
+                      placeholder="Confirm your password"
+                      type="password"
+                      value={user.confirmPassword}
+                      onChange={(e) =>
+                        setUser({ ...user, confirmPassword: e.target.value })
+                      }
+                      onKeyPress={handleKeyDown}
+                      error={!!errors.confirmPassword}
+                      helperText={errors.confirmPassword}
+                    />
+                  </Grid>
+
+                  {/* Error Message */}
+                  {userInfo.registerError && (
+                    <Grid item md={12} sm={12} xs={12}>
+                      <Typography
+                        variant="body2"
+                        style={{ fontWeight: "bold", color: "red" }}
+                      >
+                        {userInfo.registerError}
+                      </Typography>
+                    </Grid>
+                  )}
 
                   <Grid item md={6} xs={12}></Grid>
 
+                  {/* Sign Up Button */}
                   <Grid item md={6} sm={6} xs={12}>
                     <Button
                       variant="text"
-                      onClick={loginClick}
+                      onClick={signupClick}
                       style={{
                         backgroundColor: "rgba(0,0,0, 0.05)",
                         width: "100%",
                         color: "black",
                       }}
                     >
-                      Login
+                      Sign Up
                     </Button>
                   </Grid>
 
-                  {/* Sign Up Link */}
+                  {/* Login Link */}
                   <Grid item md={12} sm={12} style={{ textAlign: "center" }}>
                     <Typography variant="body2" style={{ fontWeight: "bold" }}>
-                      Don't have an account?{" "}
+                      Already have an account?{" "}
                       <Link
-                        to="/signup"
+                        to="/login"
                         style={{
                           color: "black",
                           textDecoration: "underline",
                           fontWeight: "900",
                         }}
                       >
-                        Sign up here
+                        Login here
                       </Link>
                     </Typography>
                   </Grid>
@@ -217,5 +326,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  loginUser,
-})(Login);
+  registerUser,
+})(Signup);

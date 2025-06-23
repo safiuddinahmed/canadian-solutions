@@ -1,9 +1,17 @@
-import { LOGIN_USER, GET_USER, LOGIN_ERROR } from "../actions/types";
+import {
+  LOGIN_USER,
+  GET_USER,
+  LOGIN_ERROR,
+  REGISTER_ERROR,
+  REGISTER_SUCCESS,
+} from "../actions/types";
 
 const initialState = {
   token: "",
   userInfo: null,
   loginError: "",
+  registerError: "",
+  registerSuccess: "",
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +30,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginError: action.payload,
+      };
+    case REGISTER_ERROR:
+      return {
+        ...state,
+        registerError: action.payload,
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        registerSuccess: action.payload,
       };
     default:
       return state;
