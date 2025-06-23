@@ -55,9 +55,12 @@ router.post(
         },
       };
 
+      // Use environment variable if available, otherwise fall back to config
+      const jwtSecret = process.env.JWT_SECRET || config.get("jwtSecret");
+      
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        jwtSecret,
         {
           expiresIn: 360000,
         },

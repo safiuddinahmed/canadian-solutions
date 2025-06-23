@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: canadian-solutions
+    env: node
+    buildCommand: npm install && npm run clientinstall && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 16.20.0
+      - key: NODE_OPTIONS
+        value: --openssl-legacy-provider

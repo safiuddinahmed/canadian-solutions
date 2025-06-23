@@ -11,7 +11,9 @@ module.exports = function(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token, config.get("jwtSecret"));
+        // Use environment variable if available, otherwise fall back to config
+        const jwtSecret = process.env.JWT_SECRET || config.get("jwtSecret");
+        const decoded = jwt.verify(token, jwtSecret);
 
         req.user = decoded.user;
         next();

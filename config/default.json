@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://moh123:moh123@canadiansolutions.z5gtr.mongodb.net/CanadianSolutions?retryWrites=true&w=majority",
-    "jwtSecret" : "secret"
+    "mongoURI": "mongodb://localhost:27017/canadiansolutions",
+    "jwtSecret" : "fallback-secret-for-development"
 }
